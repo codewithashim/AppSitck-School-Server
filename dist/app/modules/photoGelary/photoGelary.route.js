@@ -12,7 +12,7 @@ router.post("/album/create", photoGelary_controller_1.PhotoGelaryController.crea
 router.get("/", photoGelary_controller_1.PhotoGelaryController.getAllPhotoGelary);
 router.get("/album/:album", photoGelary_controller_1.PhotoGelaryController.getPhotoGelaryByAlbum);
 router.get("/album", photoGelary_controller_1.PhotoGelaryController.getAllAlbum);
-router.get("/singelgelary/:id", photoGelary_controller_1.PhotoGelaryController.getPhotoGelaryById);
+router.get("/get-singel/:id", photoGelary_controller_1.PhotoGelaryController.getPhotoGelaryById);
 router.patch("/update/:id", photoGelary_controller_1.PhotoGelaryController.updatePhotoGelary);
 router.delete("/delete/:id", photoGelary_controller_1.PhotoGelaryController.deletePhotoGelary);
 router.delete("/album/:id", photoGelary_controller_1.PhotoGelaryController.deleteAlbum);

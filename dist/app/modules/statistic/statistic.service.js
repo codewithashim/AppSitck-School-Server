@@ -37,6 +37,9 @@ const getAllStatistic = () => __awaiter(void 0, void 0, void 0, function* () {
 const getStatisticById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const statistic = yield statistic_modal_1.Statistic.findById(id);
+        if (!statistic) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Statistic not found");
+        }
         return statistic;
     }
     catch (error) {

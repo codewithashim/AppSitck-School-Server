@@ -37,6 +37,9 @@ const getAllNotice = () => __awaiter(void 0, void 0, void 0, function* () {
 const getNoticeById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const notice = yield notice_model_1.Notice.findById(id);
+        if (!notice) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Notice not found");
+        }
         return notice;
     }
     catch (error) {

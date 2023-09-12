@@ -36,7 +36,10 @@ const getAllResult = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 const getResultById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield result_model_1.Result.findById(id);
+        const result = yield (result_model_1.Result === null || result_model_1.Result === void 0 ? void 0 : result_model_1.Result.findById(id));
+        if (!result) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Result not found");
+        }
         return result;
     }
     catch (error) {

@@ -29,6 +29,9 @@ const createHeader = (payload) => __awaiter(void 0, void 0, void 0, function* ()
 const getAllHeader = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const headers = yield header_model_1.Header.find();
+        if (!headers) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Header not found");
+        }
         return headers;
     }
     catch (error) {
@@ -38,6 +41,9 @@ const getAllHeader = () => __awaiter(void 0, void 0, void 0, function* () {
 const getHeaderById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const header = yield header_model_1.Header.findById(id);
+        if (!header) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Header not found");
+        }
         return header;
     }
     catch (error) {

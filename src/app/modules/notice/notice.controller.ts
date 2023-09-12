@@ -4,7 +4,7 @@ import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 import { NoticeService } from "./notice.service";
 import { INotice } from "./notice.interface";
-import uploadFileToDrive from "../../middlewares/uploadFileToDrive";
+
 
 const createNotice = catchAsync(async (req: Request, res: Response) => {
   if (!req.file) {

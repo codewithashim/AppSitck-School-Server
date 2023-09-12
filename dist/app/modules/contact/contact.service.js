@@ -28,6 +28,9 @@ const createContact = (payload) => __awaiter(void 0, void 0, void 0, function* (
 const getAllContact = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const contacts = yield contact_model_1.Contact.find();
+        if (!contacts) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Contact not found");
+        }
         return contacts;
     }
     catch (error) {
@@ -37,6 +40,9 @@ const getAllContact = () => __awaiter(void 0, void 0, void 0, function* () {
 const getContactById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const contact = yield contact_model_1.Contact.findById(id);
+        if (!contact) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Contact not found");
+        }
         return contact;
     }
     catch (error) {

@@ -37,6 +37,9 @@ const getAllStaff = () => __awaiter(void 0, void 0, void 0, function* () {
 const getStaffById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const staff = yield staff_model_1.Staff.findById(id);
+        if (!staff) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Staff not found");
+        }
         return staff;
     }
     catch (error) {

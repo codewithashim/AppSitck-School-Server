@@ -28,6 +28,9 @@ const createEvent = (payload) => __awaiter(void 0, void 0, void 0, function* () 
 const getAllEvent = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const events = yield event_model_1.Event.find();
+        if (!events) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Event not found");
+        }
         return events;
     }
     catch (error) {
@@ -37,6 +40,9 @@ const getAllEvent = () => __awaiter(void 0, void 0, void 0, function* () {
 const getEventById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const event = yield event_model_1.Event.findById(id);
+        if (!event) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Event not found");
+        }
         return event;
     }
     catch (error) {

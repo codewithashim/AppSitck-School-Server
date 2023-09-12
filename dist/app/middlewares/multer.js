@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const multer_1 = __importDefault(require("multer"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-const uploadDestination = "./src/uploads/" || "./dist/uploads/" || "./uploads/";
+const uploadDestination = "./uploads/";
 if (!fs_1.default.existsSync(uploadDestination)) {
     fs_1.default.mkdirSync(uploadDestination, { recursive: true });
 }

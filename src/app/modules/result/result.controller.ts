@@ -4,7 +4,6 @@ import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 import { ResultService } from "./result.service";
 import { IResult } from "./result.interface";
-import uploadFileToDrive from "../../middlewares/uploadFileToDrive";
 
 const createResult = catchAsync(async (req: Request, res: Response) => {
   if (!req.file) {

@@ -28,6 +28,9 @@ const createCommittee = (payload) => __awaiter(void 0, void 0, void 0, function*
 const getAllCommittee = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const Committees = yield committee_model_1.Committee.find();
+        if (!Committees) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Committee not found");
+        }
         return Committees;
     }
     catch (error) {
@@ -37,6 +40,9 @@ const getAllCommittee = () => __awaiter(void 0, void 0, void 0, function* () {
 const getCommitteeById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const committee = yield committee_model_1.Committee.findById(id);
+        if (!committee) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Committee not found");
+        }
         return committee;
     }
     catch (error) {

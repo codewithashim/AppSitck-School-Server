@@ -28,6 +28,9 @@ const createTeacher = (payload) => __awaiter(void 0, void 0, void 0, function* (
 const getAllTeacher = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const teachers = yield teacher_model_1.Teacher.find();
+        if (!teachers) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Teacher not found");
+        }
         return teachers;
     }
     catch (error) {
@@ -37,6 +40,9 @@ const getAllTeacher = () => __awaiter(void 0, void 0, void 0, function* () {
 const getTeacherById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const teacher = yield teacher_model_1.Teacher.findById(id);
+        if (!teacher) {
+            throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "Teacher not found");
+        }
         return teacher;
     }
     catch (error) {
