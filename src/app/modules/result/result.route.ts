@@ -9,8 +9,12 @@ router.get("/", ResultController.getAllResult);
 
 router.get("/get-singel/:id", ResultController.getResultById);
 
+router.get("/get-by-class/:class", ResultController.getResultsByClass);
+
 router.patch("/update/:id",upload.single("file"),  ResultController.updateResult);
 
 router.delete("/delete/:id", ResultController.deleteResult);
+
+
 
 export const ResultRoutes = router;

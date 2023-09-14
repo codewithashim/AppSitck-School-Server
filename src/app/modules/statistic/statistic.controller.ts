@@ -62,10 +62,92 @@ const deleteStatistic = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const createOrganizationStatistic = catchAsync(
+  async (req: Request, res: Response) => {
+    const StatisticData = req.body;
+    const Statistic = await StatisticService.createOrganizationStatistic(
+      StatisticData
+    );
+    sendResponse<IStatistic>(res, {
+      statusCode: httpStatus.CREATED,
+      success: true,
+      message: "Statistic created successfully!",
+      data: Statistic,
+    });
+  }
+);
+
+const getAllOrganizationStatistic = catchAsync(
+  async (req: Request, res: Response) => {
+    const Statistic = await StatisticService.getAllOrganizationStatistic();
+
+    sendResponse<IStatistic[]>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Statistic fetched successfully!",
+      data: Statistic,
+    });
+  }
+);
+
+const getOrganizationStatisticById = catchAsync(
+  async (req: Request, res: Response) => {
+    const Statistic = await StatisticService.getOrganizationStatisticById(
+      req.params.id
+    );
+
+    sendResponse<IStatistic>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Statistic fetched successfully!",
+      data: Statistic,
+    });
+  }
+);
+
+const updateOrganizationStatistic = catchAsync(
+  async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const updatedData = req.body;
+    const Statistic = await StatisticService.updateOrganizationStatisticById(
+      id,
+      updatedData
+    );
+
+    sendResponse<IStatistic>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Statistic updated successfully!",
+      data: Statistic,
+    });
+  }
+);
+
+const deleteOrganizationStatistic = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const Statistic = await StatisticService.deleteOrganizationStatisticById(
+      id
+    );
+    sendResponse<IStatistic>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Statistic deleted successfully!",
+      data: Statistic,
+    });
+  }
+);
+
+
 export const StatisticController = {
   getAllStatistic,
   getStatisticById,
   updateStatistic,
   deleteStatistic,
   createStatistic,
+  createOrganizationStatistic,
+  getAllOrganizationStatistic,
+  getOrganizationStatisticById,
+  updateOrganizationStatistic,
+  deleteOrganizationStatistic,
 };

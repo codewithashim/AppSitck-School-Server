@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 
-export type IResult = {
+export type IRutine = {
   title: string;
   details: string;
   pbulishDate: string;
@@ -8,4 +8,4 @@ export type IResult = {
   file: string;
 };
 
-export type ResultModel = Model<IResult, Record<string, unknown>>;
+export type RutineModel = Model<IRutine, Record<string, unknown>>;

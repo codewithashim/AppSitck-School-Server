@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { ResultModel, IResult } from "./result.interface";
+import { RutineModel, IRutine } from "./rutine.interface";
 
-const ResultSchema = new Schema<IResult>(
+const RutineSchema = new Schema<IRutine>(
   {
     title: {
       type: String,
@@ -27,4 +27,4 @@ const ResultSchema = new Schema<IResult>(
   }
 );
 
-export const Result = model<IResult, ResultModel>("Result", ResultSchema);
+export const Rutine = model<IRutine, RutineModel>("Rutine", RutineSchema);

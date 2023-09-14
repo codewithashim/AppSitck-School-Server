@@ -1,7 +1,7 @@
 import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
-import { ITeacher } from "./teacher.interface";
-import { Teacher } from "./teacher.model";
+import { IMessage, ITeacher } from "./teacher.interface";
+import { Message, Teacher } from "./teacher.model";
 
 const createTeacher = async (payload: ITeacher): Promise<ITeacher | null> => {
   try {
@@ -76,10 +76,92 @@ const deleteTeacherById = async (id: string): Promise<ITeacher | null> => {
   }
 };
 
+const createMessage = async (payload: IMessage): Promise<IMessage | null> => {
+  try {
+    const message = await Message.create(payload);
+    return message;
+  } catch (error) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Bad request");
+  }
+};
+
+const getAllMessage = async (): Promise<Array<IMessage>> => {
+  try {
+    const messages = await Message.find();
+    if (!messages) {
+      throw new ApiError(httpStatus.NOT_FOUND, "Message not found");
+    }
+
+    return messages;
+  } catch (error) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    );
+  }
+};
+
+const getMessageById = async (id: string): Promise<IMessage | null> => {
+  try {
+    const message = await Message.findById(id);
+    if (!message) {
+      throw new ApiError(httpStatus.NOT_FOUND, "Message not found");
+    }
+    return message;
+  } catch (error) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    );
+  }
+};
+
+const updateMessageById = async (
+  id: string,
+  payload: IMessage
+): Promise<IMessage | null> => {
+  try {
+    const message = await Message.findOneAndUpdate(
+      { _id: id },
+      { ...payload },
+      {
+        new: true,
+      }
+    );
+    return message;
+  } catch (error) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    );
+  }
+};
+
+const deleteMessageById = async (id: string): Promise<IMessage | null> => {
+  try {
+    const message = await Message.findByIdAndDelete(id);
+    return message;
+  } catch (error) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    );
+  }
+}
+
+
+
 export const TeacherService = {
   createTeacher,
   getAllTeacher,
   getTeacherById,
   updateTeacherById,
   deleteTeacherById,
+
+  createMessage,
+  getAllMessage,
+  getMessageById,
+  updateMessageById,
+  deleteMessageById,
+  
 };

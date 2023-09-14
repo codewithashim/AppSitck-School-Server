@@ -29,7 +29,6 @@ const createResult = catchAsync(async (req: Request, res: Response) => {
 
 const getAllResult = catchAsync(async (req: Request, res: Response) => {
   const result = await ResultService.getAllResult();
-
   sendResponse<IResult[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -48,6 +47,19 @@ const getResultById = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const getResultsByClass = catchAsync(async (req: Request, res: Response) => {
+  const result = await ResultService.getResultsByClass(req?.params?.class);
+
+  sendResponse<IResult[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Result fetched successfully!",
+    data: result,
+  });
+});
+
+
 
 const updateResult = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -91,4 +103,5 @@ export const ResultController = {
   updateResult,
   deleteResult,
   createResult,
+  getResultsByClass
 };

@@ -3,7 +3,7 @@ import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 import { TeacherService } from "./teacher.service";
-import { ITeacher } from "./teacher.interface";
+import { IMessage, ITeacher } from "./teacher.interface";
 
 const createTeacher = catchAsync(async (req: Request, res: Response) => {
   const TeacherData = req.body;
@@ -62,10 +62,73 @@ const deleteTeacher = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const createMessage = catchAsync(async (req: Request, res: Response) => {
+  const MessageData = req.body;
+  const Message = await TeacherService.createMessage(MessageData);
+  sendResponse<IMessage>(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: "Message created successfully!",
+    data: Message,
+  });
+});
+
+const getAllMessage = catchAsync(async (req: Request, res: Response) => {
+  const Message = await TeacherService.getAllMessage();
+
+  sendResponse<IMessage[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Message fetched successfully!",
+    data: Message,
+  });
+});
+
+const getMessageById = catchAsync(async (req: Request, res: Response) => {
+  const Message = await TeacherService.getMessageById(req.params.id);
+
+  sendResponse<IMessage>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Message fetched successfully!",
+    data: Message,
+  });
+});
+
+const updateMessage = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const updatedData = req.body;
+  const Message = await TeacherService.updateMessageById(id, updatedData);
+
+  sendResponse<IMessage>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Message updated successfully!",
+    data: Message,
+  });
+});
+
+const deleteMessage = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const Message = await TeacherService.deleteMessageById(id);
+  sendResponse<IMessage>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Message deleted successfully!",
+    data: Message,
+  });
+});
+
 export const TeacherController = {
   getAllTeacher,
   getTeacherById,
   updateTeacher,
   deleteTeacher,
   createTeacher,
+
+  getAllMessage,
+  getMessageById,
+  updateMessage,
+  deleteMessage,
+  createMessage,
 };

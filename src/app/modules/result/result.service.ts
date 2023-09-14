@@ -26,11 +26,23 @@ const getAllResult = async (): Promise<Array<IResult>> => {
 
 const getResultById = async (id: string): Promise<IResult | null> => {
   try {
-    const result = await Result?.findById(id);
+    const result = await Result.findOne({ _id: id });
     if (!result) {
       throw new ApiError(httpStatus.NOT_FOUND, "Result not found");
     }
     return result;
+  } catch (error) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    );
+  }
+};
+
+const getResultsByClass = async (classes: string): Promise<Array<IResult>> => {
+  try {
+    const results = await Result.find({ class: classes });
+    return results;
   } catch (error) {
     throw new ApiError(
       httpStatus.INTERNAL_SERVER_ERROR,
@@ -78,4 +90,5 @@ export const ResultService = {
   getResultById,
   updateResultById,
   deleteResultById,
+  getResultsByClass,
 };

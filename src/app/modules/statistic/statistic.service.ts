@@ -1,7 +1,7 @@
 import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
-import { IStatistic } from "./statistic.interface";
-import { Statistic } from "./statistic.modal";
+import { IOrganizationStatistic, IStatistic } from "./statistic.interface";
+import { OrganizationStatistic, Statistic } from "./statistic.modal";
 
 const createStatistic = async (
   payload: IStatistic
@@ -74,10 +74,95 @@ const deleteStatisticById = async (id: string): Promise<IStatistic | null> => {
   }
 };
 
+const createOrganizationStatistic = async (
+  payload: IOrganizationStatistic
+): Promise<IOrganizationStatistic | null> => {
+  try {
+    const statistic = await OrganizationStatistic.create(payload);
+    return statistic;
+  } catch (error) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Bad request");
+  }
+};
+
+const getAllOrganizationStatistic = async (): Promise<
+  Array<IOrganizationStatistic>
+> => {
+  try {
+    const statistics = await OrganizationStatistic.find();
+    return statistics;
+  } catch (error) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    );
+  }
+};
+
+const getOrganizationStatisticById = async (
+  id: string
+): Promise<IOrganizationStatistic | null> => {
+  try {
+    const statistic = await OrganizationStatistic.findById(id);
+    if (!statistic) {
+      throw new ApiError(httpStatus.NOT_FOUND, "Statistic not found");
+    }
+    return statistic;
+  } catch (error) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    );
+  }
+};
+
+const updateOrganizationStatisticById = async (
+  id: string,
+  payload: IOrganizationStatistic
+): Promise<IOrganizationStatistic | null> => {
+  try {
+    const statistic = await OrganizationStatistic.findOneAndUpdate(
+      { _id: id },
+      { ...payload },
+      {
+        new: true,
+      }
+    );
+    return statistic;
+  } catch (error) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    );
+  }
+};
+
+const deleteOrganizationStatisticById = async (
+  id: string
+): Promise<IOrganizationStatistic | null> => {
+  try {
+    const statistic = await OrganizationStatistic.findByIdAndDelete(id);
+    return statistic;
+  } catch (error) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    );
+  }
+};
+
+
+
 export const StatisticService = {
   createStatistic,
   getAllStatistic,
   getStatisticById,
   updateStatisticById,
   deleteStatisticById,
+  createOrganizationStatistic,
+  getAllOrganizationStatistic,
+  getOrganizationStatisticById,
+  updateOrganizationStatisticById,
+  deleteOrganizationStatisticById,
+  
 };

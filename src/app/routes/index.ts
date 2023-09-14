@@ -14,6 +14,9 @@ import { CommitteeRoutes } from "../modules/committee/committee.route";
 import { HomeSliderRoutes } from "../modules/homeslider/homeslider.route";
 import { PhotoGelaryRoutes } from "../modules/photoGelary/photoGelary.route";
 import { StatisticRoutes } from "../modules/statistic/statistic.route";
+import { RutineRoutes } from "../modules/rutine/rutine.route";
+import { SylebusRoutes } from "../modules/sylebus/sylebus.route";
+import { StudentPortalRoutes } from "../modules/studentPortal/studentPortal.route";
 
 const router = express.Router();
 
@@ -77,7 +80,19 @@ const moduleRoutes = [
   {
     path: "/statistic",
     route: StatisticRoutes,
-  }
+  },
+  {
+    path: "rutine",
+    route: RutineRoutes,
+  },
+  {
+    path: "sylebus",
+    route: SylebusRoutes,
+  },
+  {
+    path: "student-portal",
+    route: StudentPortalRoutes,
+  },
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));

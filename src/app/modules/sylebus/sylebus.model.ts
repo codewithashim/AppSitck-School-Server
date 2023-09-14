@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { ResultModel, IResult } from "./result.interface";
+import { SylebusModel, ISylebus } from "./sylebus.interface";
 
-const ResultSchema = new Schema<IResult>(
+const SylebusSchema = new Schema<ISylebus>(
   {
     title: {
       type: String,
@@ -27,4 +27,4 @@ const ResultSchema = new Schema<IResult>(
   }
 );
 
-export const Result = model<IResult, ResultModel>("Result", ResultSchema);
+export const Sylebus = model<ISylebus, SylebusModel>("Sylebus", SylebusSchema);
