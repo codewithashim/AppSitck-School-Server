@@ -8,8 +8,12 @@ export type IOrganizationStatistic = {
 export type IStatistic = {
   title: string;
   counte: string;
+  status: string;
 };
 
-export type OrganizationStatisticModel = Model<IOrganizationStatistic, Record<string, unknown>>;
+export type OrganizationStatisticModel = Model<
+  IOrganizationStatistic,
+  Record<string, unknown>
+>;
 
 export type StatisticModel = Model<IStatistic, Record<string, unknown>>;

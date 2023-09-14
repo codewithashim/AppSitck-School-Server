@@ -4,17 +4,17 @@ const router = express.Router();
 
 router.get("/", AboutController.getAllAbout);
 
-router.get("/:id", AboutController.getAboutById);
+router.get("/get-singel/:id", AboutController.getAboutById);
 
 router.post(
   "/create",
   AboutController.createAbout
 );
 
-router.patch("/:id", AboutController.updateAbout);
+router.patch("/update/:id", AboutController.updateAbout);
 
 router.delete(
-  "/:id",
+  "/delete/:id",
   AboutController.deleteAbout
 );
 

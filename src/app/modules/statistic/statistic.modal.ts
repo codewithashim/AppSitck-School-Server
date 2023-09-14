@@ -26,6 +26,9 @@ const StatisticSchema = new Schema<IStatistic>(
     counte: {
       type: String,
     },
+    status: {
+      type: String,
+    },
   },
   {
     timestamps: true,
