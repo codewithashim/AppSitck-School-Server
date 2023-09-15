@@ -1,5 +1,10 @@
 import { Schema, model } from "mongoose";
-import { TeacherModel, ITeacher, IMessage, MessageModal } from "./teacher.interface";
+import {
+  TeacherModel,
+  ITeacher,
+  IMessage,
+  MessageModal,
+} from "./teacher.interface";
 
 const MessageSchema = new Schema<IMessage>(
   {
@@ -32,23 +37,36 @@ const TeacherSchema = new Schema<ITeacher>(
   {
     name: {
       type: String,
-      required: true,
     },
     detail: {
       type: String,
-      required: true,
     },
     joiningDate: {
       type: String,
-      required: true,
+    },
+    indexNo: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+    qualification: {
+      type: String,
     },
     position: {
       type: String,
-      required: true,
     },
     image: {
       type: String,
-      required: true,
+    },
+    presentAddress: {
+      type: String,
+    },
+    permanentAddress: {
+      type: String,
     },
   },
   {

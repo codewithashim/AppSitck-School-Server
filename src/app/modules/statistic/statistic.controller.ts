@@ -3,7 +3,7 @@ import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 import { StatisticService } from "./statistic.service";
-import { IStatistic } from "./statistic.interface";
+import { IOrganizationStatistic, IStatistic } from "./statistic.interface";
 
 const createStatistic = catchAsync(async (req: Request, res: Response) => {
   const StatisticData = req.body;
@@ -68,7 +68,7 @@ const createOrganizationStatistic = catchAsync(
     const Statistic = await StatisticService.createOrganizationStatistic(
       StatisticData
     );
-    sendResponse<IStatistic>(res, {
+    sendResponse<IOrganizationStatistic>(res, {
       statusCode: httpStatus.CREATED,
       success: true,
       message: "Statistic created successfully!",
@@ -81,7 +81,7 @@ const getAllOrganizationStatistic = catchAsync(
   async (req: Request, res: Response) => {
     const Statistic = await StatisticService.getAllOrganizationStatistic();
 
-    sendResponse<IStatistic[]>(res, {
+    sendResponse<IOrganizationStatistic[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "Statistic fetched successfully!",
@@ -96,7 +96,7 @@ const getOrganizationStatisticById = catchAsync(
       req.params.id
     );
 
-    sendResponse<IStatistic>(res, {
+    sendResponse<IOrganizationStatistic>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "Statistic fetched successfully!",
@@ -109,16 +109,16 @@ const updateOrganizationStatistic = catchAsync(
   async (req: Request, res: Response) => {
     const id = req.params.id;
     const updatedData = req.body;
-    const Statistic = await StatisticService.updateOrganizationStatisticById(
+    const OrganizationStatistic = await StatisticService.updateOrganizationStatisticById(
       id,
       updatedData
     );
 
-    sendResponse<IStatistic>(res, {
+    sendResponse<IOrganizationStatistic>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "Statistic updated successfully!",
-      data: Statistic,
+      data: OrganizationStatistic,
     });
   }
 );
@@ -129,7 +129,7 @@ const deleteOrganizationStatistic = catchAsync(
     const Statistic = await StatisticService.deleteOrganizationStatisticById(
       id
     );
-    sendResponse<IStatistic>(res, {
+    sendResponse<IOrganizationStatistic>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "Statistic deleted successfully!",

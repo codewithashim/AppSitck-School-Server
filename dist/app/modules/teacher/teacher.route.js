@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TeacherRoutes = void 0;
+const express_1 = __importDefault(require("express"));
+const teacher_controller_1 = require("./teacher.controller");
+const router = express_1.default.Router();
+router.get("/", teacher_controller_1.TeacherController.getAllTeacher);
+router.get("/get-message", teacher_controller_1.TeacherController.getAllMessage);
+router.get("/get-singel/:id", teacher_controller_1.TeacherController.getTeacherById);
+router.get("/get-singel-message/:id", teacher_controller_1.TeacherController.getMessageById);
+router.post("/create", teacher_controller_1.TeacherController.createTeacher);
+router.post("/create-message", teacher_controller_1.TeacherController.createMessage);
+router.patch("/update/:id", teacher_controller_1.TeacherController.updateTeacher);
+router.patch("/update-message/:id", teacher_controller_1.TeacherController.updateMessage);
+router.delete("/delete/:id", teacher_controller_1.TeacherController.deleteTeacher);
+router.delete("/delete-message/:id", teacher_controller_1.TeacherController.deleteMessage);
+exports.TeacherRoutes = router;

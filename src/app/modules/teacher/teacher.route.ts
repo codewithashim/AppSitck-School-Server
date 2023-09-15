@@ -7,7 +7,7 @@ router.get("/get-message", TeacherController.getAllMessage);
 
 router.get("/get-singel/:id", TeacherController.getTeacherById);
 
-router.get("/get-message/:id", TeacherController.getMessageById);
+router.get("/get-singel-message/:id", TeacherController.getMessageById);
 
 router.post("/create", TeacherController.createTeacher);
 
