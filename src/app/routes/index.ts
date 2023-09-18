@@ -17,6 +17,7 @@ import { StatisticRoutes } from "../modules/statistic/statistic.route";
 import { RutineRoutes } from "../modules/rutine/rutine.route";
 import { SylebusRoutes } from "../modules/sylebus/sylebus.route";
 import { StudentPortalRoutes } from "../modules/studentPortal/studentPortal.route";
+import {  FootersRoutes } from "../modules/footer/footer.route";
 
 const router = express.Router();
 
@@ -32,6 +33,10 @@ const moduleRoutes = [
   {
     path: "/header",
     route: HeaderRoutes,
+  },
+  {
+    path: "/footer",
+    route: FootersRoutes, 
   },
   {
     path: "/result",
@@ -82,17 +87,18 @@ const moduleRoutes = [
     route: StatisticRoutes,
   },
   {
-    path: "rutine",
+    path: "/rutine",
     route: RutineRoutes,
   },
   {
-    path: "sylebus",
+    path: "/sylebus",
     route: SylebusRoutes,
   },
   {
-    path: "student-portal",
+    path: "/student-portal",
     route: StudentPortalRoutes,
   },
+
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));

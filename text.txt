@@ -1,0 +1,1 @@
+mongodb+srv://ckhuhs:8JkrRwDrULun6nJ1@ckhuhs.nrkkbbu.mongodb.net/?retryWrites=true&w=majority

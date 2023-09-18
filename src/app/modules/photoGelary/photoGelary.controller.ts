@@ -72,6 +72,7 @@ const getPhotoGelaryByAlbum = catchAsync(
       album,
       title: "",
       image: "",
+      _id: undefined
     };
     const result = await PhotoGelaryService.getPhotoGelaryByAlbum(albumObject);
 
@@ -106,6 +107,18 @@ const getAllAlbum = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAlbumById = catchAsync(async (req: Request, res: Response) => {
+  const result = await PhotoGelaryService.getAlbumById(req.params.id);
+
+  sendResponse<IAlbum>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Album fetched successfully!",
+    data: result,
+  });
+}) 
+
+
 const deleteAlbum = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await PhotoGelaryService.deleteAlbumById(id);
@@ -117,6 +130,20 @@ const deleteAlbum = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deletePhotoFromAlbumAndPhotoGelary = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await PhotoGelaryService.deletePhotoFromAlbumAndPhotoGelary(id);
+
+  sendResponse<any>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Album deleted successfully!",
+    data: result,
+  });
+});
+
+
+
 export const PhotoGelaryController = {
   getAllPhotoGelary,
   getPhotoGelaryById,
@@ -124,8 +151,10 @@ export const PhotoGelaryController = {
   deletePhotoGelary,
   createPhotoGelary,
 
+  deletePhotoFromAlbumAndPhotoGelary,
   getPhotoGelaryByAlbum,
   createAlbum,
   getAllAlbum,
+  getAlbumById,
   deleteAlbum,
 };

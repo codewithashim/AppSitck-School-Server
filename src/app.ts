@@ -24,6 +24,10 @@ app.use("/api/v1/", routes);
 
 app.use(globalErrorHandler);
 
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hey WellCome To School Server!");
+});
+
 //handle not found
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.NOT_FOUND).json({

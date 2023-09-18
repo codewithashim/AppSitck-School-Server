@@ -13,6 +13,7 @@ const PhotoGelarySchema = new Schema<IPhotoGelary>(
     },
     album: {
       type: String,
+      ref: "Album",
     },
     image: {
       type: String,
@@ -30,6 +31,18 @@ const AlbumSchema = new Schema<IAlbum>(
   {
     title: {
       type: String,
+    },
+    albumProfile: {
+      type: String,
+    },
+    photos: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "PhotoGelary",
+      },
+    ],
+    totalPhotos: {
+      type: Number,
     },
   },
   {

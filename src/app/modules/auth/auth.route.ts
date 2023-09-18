@@ -12,7 +12,6 @@ router.post(
 
 router.post(
   "/login",
-  validateRequest(createUserValidator.loginUserZodSchema),
   UserController.loginUser
 );
 
