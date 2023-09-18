@@ -13,6 +13,24 @@ const StudentPortalSchema = new Schema<IStudentPortal>(
     shift: {
       type: String,
     },
+    rutine: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Rutine",
+      },
+    ],
+    result: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Result",
+      },
+    ],
+    sylebus: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Sylebus",
+      },
+    ],
   },
   {
     timestamps: true,

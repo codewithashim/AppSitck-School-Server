@@ -1,11 +1,23 @@
 import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
+import { StudentPortal } from "../studentPortal/studentPortal.modal";
 import { IResult } from "./result.interface";
 import { Result } from "./result.model";
+import { Types } from "mongoose";
 
 const createResult = async (payload: IResult): Promise<IResult | null> => {
   try {
     const result = await Result.create(payload);
+    const selectedStudentPortalClassId = payload.class.toString(); 
+    const selectedStudentPortalClass = await StudentPortal.findById(selectedStudentPortalClassId);
+
+    if (selectedStudentPortalClass) {
+      if (Array.isArray(selectedStudentPortalClass.result)) {
+        (selectedStudentPortalClass.result as Types.ObjectId[]).push(result?._id);
+        selectedStudentPortalClass.save();
+      }
+    }
+    
     return result;
   } catch (error) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Bad request");

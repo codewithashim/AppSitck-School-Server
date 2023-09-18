@@ -51,16 +51,6 @@ const deleteAlbumById = async (id: string): Promise<IAlbum | null> => {
   }
 };
 
-// const createPhotoGelary = async (
-//   payload: IPhotoGelary
-// ): Promise<IPhotoGelary | null> => {
-//   try {
-//     const photoGelary = await PhotoGelary.create(payload);
-//     return photoGelary;
-//   } catch (error) {
-//     throw new ApiError(httpStatus.BAD_REQUEST, "Bad request");
-//   }
-// };
 
 const createPhotoGelary = async (payload: IPhotoGelary): Promise<IPhotoGelary | null> => {
   try {

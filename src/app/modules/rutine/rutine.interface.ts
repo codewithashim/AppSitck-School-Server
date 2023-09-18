@@ -1,6 +1,7 @@
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
 
 export type IRutine = {
+  _id: any;
   title: string;
   details: string;
   pbulishDate: string;

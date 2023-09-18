@@ -1,6 +1,7 @@
 import { Model } from "mongoose";
 
 export type IResult = {
+  _id: any;
   title: string;
   details: string;
   pbulishDate: string;

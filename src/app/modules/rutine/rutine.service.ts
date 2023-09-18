@@ -2,15 +2,31 @@ import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
 import { IRutine } from "./rutine.interface";
 import { Rutine } from "./rutine.model";
+import { StudentPortal } from "../studentPortal/studentPortal.modal";
+import { Types } from "mongoose";
+
 
 const createRutine = async (payload: IRutine): Promise<IRutine | null> => {
   try {
     const rutine = await Rutine.create(payload);
+
+    const selectedStudentPortalClassId = payload.class.toString(); 
+    const selectedStudentPortalClass = await StudentPortal.findById(selectedStudentPortalClassId);
+
+    if (selectedStudentPortalClass) {
+      if (Array.isArray(selectedStudentPortalClass?.rutine)) {
+        (selectedStudentPortalClass?.rutine as Types.ObjectId[]).push(rutine?._id);
+        selectedStudentPortalClass.save();
+      }
+    }
+    
     return rutine;
   } catch (error) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Bad request");
   }
 };
+
+
 
 const getAllRutine = async (): Promise<Array<IRutine>> => {
   try {

@@ -8,6 +8,9 @@ export type IClass = {
 export type IStudentPortal = {
   title: string;
   shift?: string;
+  rutine?: [];
+  result?: [];
+  sylebus?: [];
 };
 
 export type ClassModel = Model<IClass, Record<string, unknown>>;
